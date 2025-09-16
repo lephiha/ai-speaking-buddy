@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">AI Speaking Buddy</string>
+
+    <!-- App Description -->
+    <string name="app_subtitle">Your personal English learning companion</string>
+
+    <!-- Login Screen -->
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="sign_in_subtitle">Sign in to continue your learning journey</string>
+    <string name="email_hint">Email address</string>
+    <string name="password_hint">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign Up</string>
+
+    <!-- Sign Up Screen -->
+    <string name="create_account">Create Account</string>
+    <string name="join_buddy">Join AI Speaking Buddy!</string>
+    <string name="signup_subtitle">Start your English learning journey today</string>
+    <string name="full_name_hint">Full Name</string>
+    <string name="confirm_password_hint">Confirm Password</string>
+    <string name="password_helper">At least 6 characters</string>
+    <string name="terms_agreement">I agree to the Terms of Service and Privacy Policy</string>
+    <string name="create_account_btn">Create Account</string>
+    <string name="signup_with_google">Sign up with Google</string>
+    <string name="already_have_account">Already have an account?</string>
+
+    <!-- Common -->
+    <string name="or">OR</string>
+    <string name="loading">Loading...</string>
+    <string name="error_occurred">An error occurred</string>
+    <string name="back">Back</string>
+
+    <!-- Validation Messages -->
+    <string name="error_empty_email">Please enter your email</string>
+    <string name="error_invalid_email">Please enter a valid email</string>
+    <string name="error_empty_password">Please enter your password</string>
+    <string name="error_short_password">Password must be at least 6 characters</string>
+    <string name="error_password_mismatch">Passwords don\'t match</string>
+    <string name="error_empty_name">Please enter your full name</string>
+    <string name="error_terms_not_accepted">Please accept the terms and conditions</string>
+</resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors -->
+    <color name="primary_color">#667eea</color>
+    <color name="primary_dark">#764ba2</color>
+    <color name="accent_color">#FF6B6B</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+
+    <!-- UI Colors -->
+    <color name="divider_color">#E0E0E0</color>
+    <color name="border_color">#E0E0E0</color>
+    <color name="background_light">#FAFAFA</color>
+    <color name="surface_color">#FFFFFF</color>
+
+    <!-- Status Colors -->
+    <color name="success_color">#4CAF50</color>
+    <color name="error_color">#F44336</color>
+    <color name="warning_color">#FF9800</color>
+</resources>
