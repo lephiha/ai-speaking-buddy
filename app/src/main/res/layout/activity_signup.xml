@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- activity_login.xml -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,31 +6,64 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
     android:fillViewport="true"
-    tools:context=".LoginActivity">
+    tools:context=".SignUpActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="32dp"
-        android:gravity="center">
+        android:padding="32dp">
+
+        <!-- Header with Back Button -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_arrow_back"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                app:tint="@android:color/white"
+                android:contentDescription="Back" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Create Account"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:gravity="center" />
+
+            <View
+                android:layout_width="48dp"
+                android:layout_height="48dp" />
+
+        </LinearLayout>
 
         <!-- Logo Container -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginTop="60dp"
-            android:layout_marginBottom="40dp">
+            android:layout_marginBottom="32dp">
 
             <!-- App Logo -->
             <androidx.cardview.widget.CardView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                app:cardCornerRadius="30dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:cardCornerRadius="20dp"
                 app:cardElevation="8dp"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="16dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -39,34 +71,33 @@
                     android:background="@drawable/logo_promax"
                     android:gravity="center">
 
+
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
-            <!-- App Title -->
+            <!-- Welcome Text -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="AI Speaking Buddy"
-                android:textSize="28sp"
+                android:text="Join AI Speaking Buddy!"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
                 android:layout_marginBottom="8dp" />
 
-            <!-- App Subtitle -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Your personal English learning companion"
-                android:textSize="16sp"
+                android:text="Start your English learning journey today"
+                android:textSize="14sp"
                 android:textColor="@android:color/white"
                 android:alpha="0.9"
-                android:textAlignment="center"
-                android:maxWidth="280dp" />
+                android:textAlignment="center" />
 
         </LinearLayout>
 
-        <!-- Login Form Card -->
+        <!-- Sign Up Form Card -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,23 +111,28 @@
                 android:orientation="vertical"
                 android:padding="32dp">
 
-                <!-- Welcome Text -->
-                <TextView
-                    android:layout_width="wrap_content"
+                <!-- Full Name Input -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Welcome Back!"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/primary_color"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginBottom="16dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:startIconDrawable="@drawable/ic_person"
+                    app:startIconTint="@color/primary_color"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sign in to continue your learning journey"
-                    android:textSize="14sp"
-                    android:textColor="@color/text_secondary"
-                    android:layout_marginBottom="32dp" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFullName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Full Name"
+                        android:inputType="textPersonName"
+                        android:textSize="16sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Email Input -->
                 <com.google.android.material.textfield.TextInputLayout
@@ -134,6 +170,7 @@
                     app:startIconTint="@color/primary_color"
                     app:endIconMode="password_toggle"
                     app:endIconTint="@color/primary_color"
+                    app:helperText="At least 6 characters"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -146,25 +183,63 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Forgot Password -->
-                <TextView
-                    android:id="@+id/tvForgotPassword"
-                    android:layout_width="wrap_content"
+                <!-- Confirm Password Input -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:text="Forgot Password?"
-                    android:textColor="@color/primary_color"
-                    android:textSize="14sp"
                     android:layout_marginBottom="24dp"
-                    android:padding="8dp"
-                    android:background="?android:attr/selectableItemBackgroundBorderless" />
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:startIconDrawable="@drawable/ic_lock_outline"
+                    app:startIconTint="@color/primary_color"
+                    app:endIconMode="password_toggle"
+                    app:endIconTint="@color/primary_color"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                <!-- Sign In Button -->
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etConfirmPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Confirm Password"
+                        android:inputType="textPassword"
+                        android:textSize="16sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Terms and Conditions Checkbox -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="24dp">
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/cbTerms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:buttonTint="@color/primary_color" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="I agree to the Terms of Service and Privacy Policy"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="0dp" />
+
+                </LinearLayout>
+
+                <!-- Sign Up Button -->
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnSignIn"
+                    android:id="@+id/btnSignUp"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:text="@string/sign_in"
+                    android:text="Create Account"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:cornerRadius="12dp"
@@ -188,7 +263,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/or"
+                        android:text="OR"
                         android:textColor="@color/text_secondary"
                         android:textSize="12sp"
                         android:paddingHorizontal="16dp" />
@@ -201,12 +276,12 @@
 
                 </LinearLayout>
 
-                <!-- Google Sign In Button -->
+                <!-- Google Sign Up Button -->
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnGoogleSignIn"
+                    android:id="@+id/btnGoogleSignUp"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:text="@string/continue_with_google"
+                    android:text="Sign up with Google"
                     android:textSize="16sp"
                     android:textColor="@color/text_primary"
                     app:cornerRadius="12dp"
@@ -221,26 +296,27 @@
 
         </androidx.cardview.widget.CardView>
 
-        <!-- Sign Up Link -->
+        <!-- Sign In Link -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="horizontal"
             android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/forgot_password"
+                android:text="Already have an account? "
                 android:textColor="@android:color/white"
                 android:textSize="14sp"
                 android:alpha="0.9" />
 
             <TextView
-                android:id="@+id/tvSignUp"
+                android:id="@+id/tvSignIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/sign_up"
+                android:text="Sign In"
                 android:textColor="@android:color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -251,7 +327,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="40dp" />
+            android:layout_height="20dp" />
 
     </LinearLayout>
 
