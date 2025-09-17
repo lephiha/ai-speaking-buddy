@@ -26,9 +26,8 @@
         android:theme="@style/Theme.AISpeakingBuddy"
         android:usesCleartextTraffic="true">
 
-        <!-- Splash Activity (Entry Point) -->
         <activity
-            android:name=".SplashActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/SplashTheme"
             android:screenOrientation="portrait">
@@ -40,7 +39,7 @@
 
         <!-- Login Activity -->
         <activity
-            android:name=".LoginActivity"
+            android:name=".loginpage.LoginActivity"
             android:exported="false"
             android:theme="@style/LoginTheme"
             android:screenOrientation="portrait"
@@ -48,18 +47,20 @@
 
         <!-- Sign Up Activity -->
         <activity
-            android:name=".SignUpActivity"
+            android:name=".signuppage.SignUpActivity"
             android:exported="false"
             android:theme="@style/LoginTheme"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- Main Activity -->
+        <!-- Home Activity -->
         <activity
-            android:name=".ui.activities.MainActivity"
+            android:name=".homepage.HomeActivity"
             android:exported="false"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait" />
+
+
     </application>
 
 </manifest>
