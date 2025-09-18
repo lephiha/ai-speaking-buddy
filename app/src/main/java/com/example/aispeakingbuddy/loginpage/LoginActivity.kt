@@ -37,5 +37,18 @@ class LoginActivity : AppCompatActivity() {
         binding.tvSignUp.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
+
+        binding.tvForgotPassword.setOnClickListener {
+            val email = binding.etEmail.text.toString().trim()
+            val intent = Intent(this, ForgotPasswordActivity::class.java)
+
+            // Pre-fill email if user has entered it
+            if (email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                intent.putExtra("email", email)
+            }
+
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        }
     }
 }

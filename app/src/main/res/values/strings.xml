@@ -41,4 +41,32 @@
     <string name="error_password_mismatch">Passwords don\'t match</string>
     <string name="error_empty_name">Please enter your full name</string>
     <string name="error_terms_not_accepted">Please accept the terms and conditions</string>
+
+    <!-- Forgot Password -->
+    <string name="forgot_password_title">Quên mật khẩu</string>
+    <string name="forgot_password_subtitle">Nhập email để nhận hướng dẫn khôi phục mật khẩu</string>
+    <string name="send_reset_email">Gửi email khôi phục</string>
+    <string name="sending">Đang gửi...</string>
+    <string name="reset_email_sent_title">Email đã được gửi</string>
+    <string name="reset_email_sent_message">Chúng tôi đã gửi hướng dẫn khôi phục mật khẩu đến email của bạn. Vui lòng kiểm tra hộp thư và làm theo hướng dẫn.</string>
+    <string name="back_to_login">Nhớ lại mật khẩu? Đăng nhập</string>
+    <string name="reset_instructions">Bạn sẽ nhận được email hướng dẫn khôi phục mật khẩu trong vòng 5-10 phút. Hãy kiểm tra cả thư mục spam.</string>
+    <string name="forgot_password_recovery_title">Khôi phục mật khẩu</string>
+    <string name="remember_password">Nhớ lại mật khẩu? </string>
+
+
+    <!-- Privacy Policy -->
+    <string name="privacy_policy_title">Chính Sách Bảo Mật</string>
+    <string name="privacy_accept">Tôi đã đọc và đồng ý</string>
+    <string name="privacy_loading">Đang tải chính sách bảo mật...</string>
+
+    <!-- Terms -->
+    <string name="terms_full">Tôi đã đọc và đồng ý với điều khoản dịch vụ và chính sách bảo mật</string>
+
+    <!-- Validation Messages -->
+    <string name="error_email_not_found">Email không tồn tại trong hệ thống</string>
+    <string name="error_reset_email_failed">Không thể gửi email khôi phục. Vui lòng thử lại sau.</string>
+    <string name="error_connection">Lỗi kết nối. Kiểm tra internet và thử lại.</string>
+
+
 </resources>
