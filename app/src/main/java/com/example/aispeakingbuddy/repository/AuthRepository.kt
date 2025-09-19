@@ -6,6 +6,7 @@ import com.example.aispeakingbuddy.configuration.HTTPService
 import com.example.aispeakingbuddy.container.LoginRequest
 import com.example.aispeakingbuddy.container.LoginResponse
 import com.example.aispeakingbuddy.container.SignUpResponse
+import com.example.aispeakingbuddy.container.UserResponse
 import com.example.aispeakingbuddy.signuppage.RegistrationResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -18,8 +19,11 @@ class AuthRepository {
     private val api = HTTPService.getInstance().create(HTTPRequest::class.java)
 
     fun login(request: LoginRequest, callback: (LoginResponse) -> Unit) {
-        api.login(request.email, request.password).enqueue(object : Callback<LoginResponse> {
-            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+        api.login(request).enqueue(object : Callback<LoginResponse> {
+            override fun onResponse(
+                call: Call<LoginResponse>,
+                response: Response<LoginResponse>
+            ) {
                 callback(response.body() ?: LoginResponse("error", "Unknown error"))
             }
 
@@ -29,55 +33,19 @@ class AuthRepository {
         })
     }
 
-    suspend fun register(fullName: String, email: String, password: String): RegistrationResponse {
-        return withContext(Dispatchers.IO) {
-            try {
-                // TODO: Replace with actual API call
-                // Example:
-                // val request = RegisterRequest(fullName, email, password)
-                // val response = apiService.register(request)
-                // return response.body() ?: throw Exception("Registration failed")
-
-                // Simulate network call
-                delay(2000)
-
-                // For demo: simulate different scenarios
-                when {
-                    email.contains("existing") -> {
-                        RegistrationResponse(
-                            status = "error",
-                            message = "Email này đã được sử dụng"
-                        )
-                    }
-                    email.contains("invalid") -> {
-                        RegistrationResponse(
-                            status = "error",
-                            message = "Email không hợp lệ"
-                        )
-                    }
-                    password.length < 6 -> {
-                        RegistrationResponse(
-                            status = "error",
-                            message = "Mật khẩu quá ngắn"
-                        )
-                    }
-                    else -> {
-                        RegistrationResponse(
-                            status = "success",
-                            message = "Đăng ký thành công! Vui lòng đăng nhập",
-                            data = mapOf(
-                                "user_id" to 12345,
-                                "email" to email,
-                                "full_name" to fullName
-                            )
-                        )
-                    }
-                }
-
-            } catch (e: Exception) {
-                throw e
+    fun register(request: UserResponse, callback: (SignUpResponse) -> Unit) {
+        api.register(request).enqueue(object : Callback<SignUpResponse> {
+            override fun onResponse(
+                call: Call<SignUpResponse>,
+                response: Response<SignUpResponse>
+            ) {
+                callback(response.body() ?: SignUpResponse("error", "Unknown error"))
             }
-        }
+
+            override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+                callback(SignUpResponse("error", t.message ?: "Network error"))
+            }
+        })
     }
 
     suspend fun verifyToken(token: String): Boolean {
@@ -102,19 +70,20 @@ class AuthRepository {
         return withContext(Dispatchers.IO) {
             try {
                 // TODO: Replace with actual API call
-                // val response = apiService.sendPasswordResetEmail(email)
+                // Example:
+                // val request = ForgotPasswordRequest(email)
+                // val response = apiService.sendPasswordReset(request)
                 // return response.isSuccessful
 
                 // Simulate network call
                 delay(1500)
 
-                // For demo: simulate email sending
-                // In real app, make HTTP request to your backend
+                // For demo: simulate different scenarios
                 when {
                     email.contains("notfound") -> false
                     email.isEmpty() -> false
                     !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> false
-                    else -> true
+                    else -> true // Assume success for demo
                 }
 
             } catch (e: Exception) {

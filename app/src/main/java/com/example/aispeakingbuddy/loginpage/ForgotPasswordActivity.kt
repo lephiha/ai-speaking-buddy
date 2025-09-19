@@ -3,24 +3,21 @@ package com.example.aispeakingbuddy.loginpage
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
-import com.example.aispeakingbuddy.R
 import com.example.aispeakingbuddy.databinding.ActivityForgotPasswordBinding
 
 class ForgotPasswordActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityForgotPasswordBinding
-    private lateinit var viewModel: ForgotPasswordViewModel
+    private val viewModel: ForgotPasswordViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_forgot_password)
 
-        viewModel = ViewModelProvider(this)[ForgotPasswordViewModel::class.java]
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = this
+        // Use simple ViewBinding
+        binding = ActivityForgotPasswordBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         setupUI()
         setupObservers()
@@ -28,7 +25,8 @@ class ForgotPasswordActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-        window.statusBarColor = getColor(R.color.primary_color)
+        // Set status bar color
+        window.statusBarColor = getColor(android.R.color.transparent)
 
         // Pre-fill email if passed from login screen
         val email = intent.getStringExtra("email")
@@ -38,18 +36,21 @@ class ForgotPasswordActivity : AppCompatActivity() {
     }
 
     private fun setupObservers() {
+        // Observe loading state
         viewModel.isLoading.observe(this) { isLoading ->
             binding.btnSendResetEmail.isEnabled = !isLoading
             binding.btnSendResetEmail.text = if (isLoading)
                 "Đang gửi..." else "Gửi email khôi phục"
         }
 
+        // Observe reset email sent success
         viewModel.resetEmailSent.observe(this) { sent ->
             if (sent) {
                 showSuccessDialog()
             }
         }
 
+        // Observe error messages
         viewModel.errorMessage.observe(this) { error ->
             error?.let {
                 Toast.makeText(this, it, Toast.LENGTH_LONG).show()
@@ -59,10 +60,12 @@ class ForgotPasswordActivity : AppCompatActivity() {
     }
 
     private fun setupClickListeners() {
+        // Back button
         binding.btnBack.setOnClickListener {
             onBackPressed()
         }
 
+        // Send reset email button
         binding.btnSendResetEmail.setOnClickListener {
             val email = binding.etEmail.text.toString().trim()
 
@@ -71,6 +74,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
             }
         }
 
+        // Back to login link
         binding.tvBackToLogin.setOnClickListener {
             finish()
         }

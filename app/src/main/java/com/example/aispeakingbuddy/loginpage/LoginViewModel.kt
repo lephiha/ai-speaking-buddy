@@ -8,15 +8,18 @@ import com.example.aispeakingbuddy.container.LoginResponse
 import com.example.aispeakingbuddy.repository.AuthRepository
 
 class LoginViewModel : ViewModel() {
-    private val authRepository = AuthRepository()
+    private val repository = AuthRepository()
 
-    fun login(email: String, password: String): LiveData<LoginResponse> {
-        val result = MutableLiveData<LoginResponse>()
+    val loginResponse = MutableLiveData<LoginResponse>()
+    val isLoading = MutableLiveData<Boolean>()
+
+    fun login(email: String, password: String) {
+        isLoading.value = true
         val request = LoginRequest(email, password)
 
-        authRepository.login(request) { response ->
-            result.postValue(response)
+        repository.login(request) { response ->
+            loginResponse.postValue(response)
+            isLoading.postValue(false)
         }
-        return result
     }
 }
